@@ -120,20 +120,8 @@ ${answers.repo}
 
 [Back To The Top](#read-me-template)
 `
+userInputs()
+.then((answers) => writeReadMe("generatedREADME.md", readmeData(answers)))
+.then("Success!")
+.catch((error) => console.log(error));
 
-
-
-
-
-
-
-    .then((answers) => {
-      // Use user feedback for... whatever!!
-    })
-    .catch((error) => {
-      if (error.isTtyError) {
-        // Prompt couldn't be rendered in the current environment
-      } else {
-        // Something else when wrong
-      }
-    });
