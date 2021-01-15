@@ -6,8 +6,7 @@ const util = require("util");
 // Variable that writes the readme file
 const writeReadMe = util.promisify(fs.writeFile);
 
-// expression function that runs inquirer
-
+// function expression that runs inquirer which asks the user for the info
 const userInputs = () =>
   inquirer
     .prompt([
@@ -66,9 +65,68 @@ const userInputs = () =>
         name: "email",
         message: "What is your email address?",
       },
-
-      /* Pass your questions in here */
     ])
+
+// function expression that writes the readme file
+const readmeData = (answers) =>
+`# ${answers.itle}
+
+> ${answers.briefDescription}
+
+![](${answers.image})
+
+### Table of Contents
+
+- [Description](#description)
+- [Technologies](#technologies)
+- [How To Use](#how-to-use)
+- [Links](#links)
+- [Author Info](#author-info)
+
+---
+
+## Description
+${answers.description}
+
+#### Technologies
+${answers.tech}
+
+[Back To The Top](#read-me-template)
+
+---
+
+## How To Use
+${answers.howToUse}
+   
+   [Back To The Top](#read-me-template)
+   
+---
+
+## Links
+
+Link to site:
+${answers.siteLink}
+
+Link to GitHub repository:
+${answers.repo}
+
+[Back To The Top](#read-me-template)
+
+---
+
+## Author Info
+
+- E-mail: ${answers.email}
+
+[Back To The Top](#read-me-template)
+`
+
+
+
+
+
+
+
     .then((answers) => {
       // Use user feedback for... whatever!!
     })
