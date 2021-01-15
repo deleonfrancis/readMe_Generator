@@ -12,12 +12,62 @@ const userInputs = () =>
   inquirer
     .prompt([
       {
-          type: "input",
-          name: "title",
-          message: "what is the title of your project"
+        // ReadMe Title
+        type: "input",
+        name: "title",
+        message: "What is the title of your project?",
       },
-      
-        /* Pass your questions in here */
+      {
+        // ReadMe Brief Description
+        type: "input",
+        name: "briefDescription",
+        message: "Type in a brief description of you project.",
+      },
+      {
+        // ReadMe Image
+        type: "input",
+        name: "image",
+        message:
+          "What is the relative path for the screenshot of your project?",
+      },
+      {
+        // Description of your project
+        type: "input",
+        name: "description",
+        message: "Describe your project.",
+      },
+      {
+        // Readme Technologies
+        type: "input",
+        name: "tech",
+        message: "What technologies were used in this project?",
+      },
+      {
+        //   ReadMe how to use
+        type: "input",
+        name: "howToUse",
+        message: "How do you use the Web App?",
+      },
+      {
+        //   ReadMe link to site
+        type: "input",
+        name: "siteLink",
+        message: "Type in the link to the site your app is running on:",
+      },
+      {
+        //   ReadMe repo to site
+        type: "input",
+        name: "repo",
+        message: "Type in the link to the repository your app located in:",
+      },
+      {
+        //   ReadMe contact
+        type: "input",
+        name: "email",
+        message: "What is your email address?",
+      },
+
+      /* Pass your questions in here */
     ])
     .then((answers) => {
       // Use user feedback for... whatever!!
