@@ -10,9 +10,14 @@ const writeReadMe = util.promisify(fs.writeFile);
 
 const userInputs = () =>
   inquirer
-
     .prompt([
-      /* Pass your questions in here */
+      {
+          type: "input",
+          name: "title",
+          message: "what is the title of your project"
+      },
+      
+        /* Pass your questions in here */
     ])
     .then((answers) => {
       // Use user feedback for... whatever!!
