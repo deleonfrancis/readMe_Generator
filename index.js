@@ -36,6 +36,12 @@ const userInputs = () =>
         message: "Describe your project.",
       },
       {
+        // Installation
+        type: "input",
+        name: "install",
+        message: "Are there any requirements to run this Web App?"
+      },
+      {
         // Readme Technologies
         type: "input",
         name: "tech",
@@ -65,11 +71,17 @@ const userInputs = () =>
         name: "email",
         message: "What is your email address?",
       },
+      {
+        //   List of License
+        type: 'input',
+        name: 'license',
+        message: "What license for this project?",
+    }
     ])
 
 // function expression that writes the readme file
 const readmeData = (answers) =>
-`# ${answers.itle}
+`# ${answers.title}
 
 > ${answers.briefDescription}
 
@@ -78,6 +90,7 @@ const readmeData = (answers) =>
 ### Table of Contents
 
 - [Description](#description)
+- [Installation](#installation)
 - [Technologies](#technologies)
 - [How To Use](#how-to-use)
 - [Links](#links)
@@ -88,7 +101,15 @@ const readmeData = (answers) =>
 ## Description
 ${answers.description}
 
-#### Technologies
+---
+
+## Installation
+${answers.install}
+
+---
+[Back To The Top](#read-me-template)
+
+## Technologies
 ${answers.tech}
 
 [Back To The Top](#read-me-template)
@@ -119,6 +140,12 @@ ${answers.repo}
 - E-mail: ${answers.email}
 
 [Back To The Top](#read-me-template)
+
+---
+
+## License
+copyright (c)
+${answers.license}
 `
 userInputs()
 .then((answers) => writeReadMe("generatedREADME.md", readmeData(answers)))
