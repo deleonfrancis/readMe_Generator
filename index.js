@@ -6,11 +6,12 @@ const util = require("util");
 // Variable that writes the readme file
 const writeReadMe = util.promisify(fs.writeFile);
 
+// Variable for ;ink to badges
 const selectedLicense = "";
 
 // Moment to get the year
 const moment = require('moment'); // require
-const currentYear = moment().format('YYYY'); 
+const currentYear = moment().format('YYYY'); //year
 
 // function expression that runs inquirer which asks the user for the info
 const userInputs = () =>
@@ -90,25 +91,25 @@ const userInputs = () =>
     },
   ]);
 
-// Switch Statement for Badges
+// IF Statement for Badges
 
-function getBadge(answers) {
-  if (answers.license === "MIT") {
-    selectedLicense =
-      "[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)";
-  } else if (answers.license === "GPLvs3") {
-    selectedLicense =
-      "[![GPLv3 license](https://img.shields.io/badge/License-GPLv3-blue.svg)](http://perso.crans.org/besson/LICENSE.html)";
-  } else if (answers.license === "Creative Commons Licenses") {
-    selectedLicense =
-      "[![CC-0 license](https://img.shields.io/badge/License-CC--0-blue.svg)](https://creativecommons.org/licenses/by-nd/4.0)";
-  }
-  return selectedLicense;
-};
+// function getBadge(answers) {
+//   if (answers.license === "MIT") {
+//     selectedLicense =
+//       "[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)";
+//   } else if (answers.license === "GPLvs3") {
+//     selectedLicense =
+//       "[![GPLv3 license](https://img.shields.io/badge/License-GPLv3-blue.svg)](http://perso.crans.org/besson/LICENSE.html)";
+//   } else if (answers.license === "Creative Commons Licenses") {
+//     selectedLicense =
+//       "[![CC-0 license](https://img.shields.io/badge/License-CC--0-blue.svg)](https://creativecommons.org/licenses/by-nd/4.0)";
+//   }
+//   return selectedLicense;
+// };
 
 // function expression that writes the readme file
 const readmeData = (answers) =>
-  ` ${selectedLicense}
+  `
 # ${answers.title}
 
 > ${answers.briefDescription}
@@ -196,6 +197,5 @@ SOFTWARE.
 `;
 userInputs()
   .then((answers) => writeReadMe("generatedREADME.md", readmeData(answers)))
-  // .then(getBadge(answers.license))
   .then("Success!")
   .catch((error) => console.log(error));
