@@ -7,11 +7,11 @@ const util = require("util");
 const writeReadMe = util.promisify(fs.writeFile);
 
 // Variable for ;ink to badges
-const selectedLicense = "";
+let selectedLicense = "";
 
 // Moment to get the year
-const moment = require('moment'); // require
-const currentYear = moment().format('YYYY'); //year
+const moment = require("moment"); // require
+const currentYear = moment().format("YYYY"); //year
 
 // function expression that runs inquirer which asks the user for the info
 const userInputs = () =>
@@ -20,7 +20,7 @@ const userInputs = () =>
       // Your Full Name
       type: "input",
       name: "fullName",
-      message: "What is your First and Last",
+      message: "What is your First and Last?",
     },
     {
       // ReadMe Title
@@ -91,25 +91,26 @@ const userInputs = () =>
     },
   ]);
 
-// IF Statement for Badges
+// Switch Statement for Badges
+function getBadge(answers) {
+  switch (answers.license) {
+    case "MIT":
+      return "[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)";
 
-// function getBadge(answers) {
-//   if (answers.license === "MIT") {
-//     selectedLicense =
-//       "[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)";
-//   } else if (answers.license === "GPLvs3") {
-//     selectedLicense =
-//       "[![GPLv3 license](https://img.shields.io/badge/License-GPLv3-blue.svg)](http://perso.crans.org/besson/LICENSE.html)";
-//   } else if (answers.license === "Creative Commons Licenses") {
-//     selectedLicense =
-//       "[![CC-0 license](https://img.shields.io/badge/License-CC--0-blue.svg)](https://creativecommons.org/licenses/by-nd/4.0)";
-//   }
-//   return selectedLicense;
-// };
+    case "GPLvs3":
+      return "[![GPLv3 license](https://img.shields.io/badge/License-GPLv3-blue.svg)](http://perso.crans.org/besson/LICENSE.html)";
+
+    case "Creative Commons Licenses":
+      return "[![CC-0 license](https://img.shields.io/badge/License-CC--0-blue.svg)](https://creativecommons.org/licenses/by-nd/4.0)";
+    default:
+      console.log("inappropriate choice");
+      break;
+  }
+}
 
 // function expression that writes the readme file
 const readmeData = (answers) =>
-  `
+  `${getBadge(answers)}
 # ${answers.title}
 
 > ${answers.briefDescription}
