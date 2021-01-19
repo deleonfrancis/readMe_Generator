@@ -96,7 +96,7 @@ function getBadge(answers) {
   switch (answers.license) {
     case "MIT":
       return "[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)";
-
+      
     case "GPLvs3":
       return "[![GPLv3 license](https://img.shields.io/badge/License-GPLv3-blue.svg)](http://perso.crans.org/besson/LICENSE.html)";
 
